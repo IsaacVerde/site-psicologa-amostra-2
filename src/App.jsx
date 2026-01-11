@@ -69,10 +69,9 @@ function App() {
                 {/* Fundo Bege Girado */}
                 <div className="absolute inset-0 bg-[#F5F0EB] rounded-[3rem_2rem_3rem_2rem] rotate-6 shadow-sm"></div>
                 
-                {/* Container da Imagem (simulada por cor sólida por enquanto) */}
+                {/* Container da Imagem */}
                 <div className="absolute inset-0 bg-[#E3DACE] rounded-[2rem_3rem_2rem_3rem] -rotate-3 overflow-hidden flex items-center justify-center shadow-inner">
                      <span className="text-6xl text-secondary font-serif opacity-50">Foto</span>
-                     {/* Quando tiveres a foto, apaga a linha acima e descomenta a de baixo: */}
                      {/* <img src="/tua-foto.jpg" alt="Dra Psicóloga" className="w-full h-full object-cover" /> */}
                 </div>
 
@@ -86,23 +85,46 @@ function App() {
         </div>
       </section>
 
-      
-        {/* --- SOBRE (Trajetória) --- */}
+      {/* --- ÁREAS DE ATUAÇÃO (MOVIDO PARA CÁ) --- */}
+      <section id="servicos" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl mb-6 font-serif text-primary">Minhas Áreas de Atuação</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto font-rounded text-lg">Uma abordagem multidisciplinar completa.</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: <Brain size={28} />, title: "Psicologia Clínica", text: "Terapia individual com foco em bem-estar." },
+              { icon: <Users size={28} />, title: "Psicologia Social", text: "Projetos de impacto e intervenção." },
+              { icon: <BookOpen size={28} />, title: "Psicologia Educacional", text: "Apoio ao desenvolvimento cognitivo." },
+              { icon: <Target size={28} />, title: "Consultoria Marketing", text: "Mentoria para psicólogos.", highlight: true }
+            ].map((service, idx) => (
+              <div key={idx} className={`p-8 rounded-3xl transition text-center group border border-transparent ${service.highlight ? 'bg-surface border-secondary/20' : 'bg-gray-50 hover:bg-surface hover:border-secondary/10'}`}>
+                <div className="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-secondary mb-6 shadow-sm group-hover:scale-110 transition">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4 font-serif text-primary">{service.title}</h3>
+                <p className="font-rounded text-gray-600">{service.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- SOBRE (Trajetória) --- */}
       <section id="sobre" className="py-20 bg-background">
-        {/* ALTERAÇÃO 1: Mudei 'items-start' para 'items-center' aqui em baixo */}
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           
           {/* Foto/Moldura Esquerda */}
           <div className="relative flex justify-center md:justify-end pr-8">
-             {/* ALTERAÇÃO 2: Aumentei a altura para h-[550px] para equilibrar com o texto */}
              <div className="w-[320px] h-[550px] bg-surface rounded-[2rem] rotate-2 flex items-center justify-center relative shadow-lg transition-transform hover:rotate-0 duration-500">
                  <div className="absolute inset-3 border border-secondary/20 rounded-[1.8rem]"></div>
-                 
-                 {/* Placeholder da Foto (podes trocar pela tag img depois) */}
                  <div className="text-center opacity-40">
                     <span className="block text-6xl font-serif text-secondary mb-2">P</span>
                     <span className="text-sm font-rounded tracking-widest uppercase">Foto Profissional</span>
                  </div>
+                 {/* <img src="/tua-foto-sobre.jpg" className="absolute inset-0 w-full h-full object-cover rounded-[2rem]" /> */}
              </div>
           </div>
           
@@ -111,13 +133,12 @@ function App() {
               <span className="text-secondary text-sm uppercase tracking-widest font-bold font-rounded">Sobre Mim</span>
               <h2 className="text-4xl font-serif text-primary mt-2">Trajetória de Dedicação à Psicologia</h2>
             </div>
-            
+
             <div className="space-y-4 text-gray-600 leading-relaxed font-rounded text-lg">
               <p>Com mais de uma década de experiência, construí minha carreira integrando diferentes áreas da psicologia para oferecer um atendimento verdadeiramente multidisciplinar.</p>
               <p>Minha formação acadêmica sólida, aliada à vivência prática, permite compreender as nuances de cada pessoa.</p>
             </div>
 
-            {/* Cards com Fonte Arredondada e Ícones */}
             <div className="space-y-4">
               {/* Card 1 */}
               <div className="bg-surface p-6 rounded-2xl flex gap-5 hover:bg-[#efe6dd] transition duration-300">
@@ -141,7 +162,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Card 3 - Abordagem Humanizada */}
+              {/* Card 3 */}
               <div className="bg-surface p-6 rounded-2xl flex gap-5 hover:bg-[#efe6dd] transition duration-300">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-secondary shrink-0 shadow-sm">
                   <Heart size={22} />
@@ -156,8 +177,7 @@ function App() {
         </div>
       </section>
 
-    
-{/* --- PARA QUEM É (TABS REFINADO) --- */}
+      {/* --- PARA QUEM É (TABS) --- */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-10">
@@ -166,7 +186,6 @@ function App() {
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mt-4"></div>
           </div>
 
-          {/* Navegação das Abas */}
           <div className="flex justify-center mb-0">
             <div className="flex w-full max-w-4xl bg-white rounded-t-xl overflow-hidden border-b border-gray-100">
               <button 
@@ -192,12 +211,10 @@ function App() {
             </div>
           </div>
 
-          {/* Conteúdo da Aba */}
           <div className={`bg-white rounded-b-2xl rounded-tr-2xl p-8 md:p-14 shadow-sm max-w-4xl mx-auto border transition-all duration-500
              ${activeTab === 'psicologos' ? 'border-secondary/40' : 'border-gray-100'}`}>
              
              {activeTab === 'pacientes' ? (
-               // --- CONTEÚDO PACIENTES ---
                <div className="grid md:grid-cols-2 gap-12 items-center animate-fadeIn">
                  <div>
                    <h3 className="text-3xl font-serif text-primary mb-4">Você Merece Acolhimento e Transformação</h3>
@@ -223,23 +240,18 @@ function App() {
                    </button>
                  </div>
 
-                 {/* Visual Círculos Pacientes */}
                  <div className="flex justify-center relative py-10">
                    <div className="relative w-72 h-72">
-                      {/* Círculo Maior */}
                       <div className="absolute inset-0 bg-[#F5F0EB] rounded-full flex items-center justify-center">
                         <Heart size={80} className="text-[#C5A47E]" strokeWidth={1.5} />
                       </div>
-                      {/* Círculo Menor Sobreposto */}
                       <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#E6E8EB] rounded-full flex items-center justify-center shadow-lg border-4 border-white backdrop-blur-sm bg-opacity-80">
-                         {/* MUDANÇA AQUI: text-xl */}
                          <span className="text-primary font-bold font-serif text-xl">Bem-estar</span>
                       </div>
                    </div>
                  </div>
                </div>
              ) : (
-               // --- CONTEÚDO PSICÓLOGOS ---
                <div className="grid md:grid-cols-2 gap-12 items-center animate-fadeIn">
                  <div>
                    <h3 className="text-3xl font-serif text-primary mb-4">Transforme sua Carreira em Sucesso</h3>
@@ -265,49 +277,18 @@ function App() {
                    </button>
                  </div>
 
-                 {/* Visual Círculos Psicólogos */}
                  <div className="flex justify-center relative py-10">
                    <div className="relative w-72 h-72">
-                      {/* Círculo Maior */}
                       <div className="absolute inset-0 bg-[#F5F0EB] rounded-full flex items-center justify-center">
                         <TrendingUp size={80} className="text-[#C5A47E]" strokeWidth={1.5} />
                       </div>
-                      {/* Círculo Menor Sobreposto */}
                       <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#e8dccf] rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-                         {/* MUDANÇA AQUI: text-xl */}
                          <span className="text-[#967D60] font-bold font-serif text-xl">Crescimento</span>
                       </div>
                    </div>
                  </div>
                </div>
              )}
-          </div>
-        </div>
-      </section>
-
-      {/* --- ÁREAS DE ATUAÇÃO --- */}
-      <section id="servicos" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl mb-6 font-serif text-primary">Minhas Áreas de Atuação</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto font-rounded text-lg">Uma abordagem multidisciplinar completa.</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: <Brain size={28} />, title: "Psicologia Clínica", text: "Terapia individual com foco em bem-estar." },
-              { icon: <Users size={28} />, title: "Psicologia Social", text: "Projetos de impacto e intervenção." },
-              { icon: <BookOpen size={28} />, title: "Psicologia Educacional", text: "Apoio ao desenvolvimento cognitivo." },
-              { icon: <Target size={28} />, title: "Consultoria Marketing", text: "Mentoria para psicólogos.", highlight: true }
-            ].map((service, idx) => (
-              <div key={idx} className={`p-8 rounded-3xl transition text-center group border border-transparent ${service.highlight ? 'bg-surface border-secondary/20' : 'bg-gray-50 hover:bg-surface hover:border-secondary/10'}`}>
-                <div className="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-secondary mb-6 shadow-sm group-hover:scale-110 transition">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-4 font-serif text-primary">{service.title}</h3>
-                <p className="font-rounded text-gray-600">{service.text}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -350,7 +331,7 @@ function App() {
                 <Phone size={18} /> (11) 99999-9999
               </div>
               <div className="flex items-center gap-3">
-                 <span className="w-4 h-4 bg-green-500 rounded-full animate-pulse"></span> Atendimento Online
+                 <span className="w-4 h-4 bg-green-500 rounded-full animate-pulse"></span> Atendimentos Online e Presenciais
               </div>
             </div>
           </div>
